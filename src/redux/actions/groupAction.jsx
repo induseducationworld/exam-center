@@ -7,11 +7,12 @@ import Token from "../../utils/Token";
 export const getAllGroup = () => async (dispatch) => {
   try {
     dispatch({ type: group.GROUP_LIST_REQUEST });
+
     const { data } = await httpService.get("/api/groups/allGroup", Token());
 
     dispatch({ type: group.GROUP_LIST_SUCCESS, payload: data.group });
-  } catch (err) {
-    errorHandler(err);
+  } catch (ex) {
+    errorHandler(ex);
   }
 };
 
@@ -22,9 +23,10 @@ export const createGroup = async (groupName, groupCode) => {
       { groupName, groupCode },
       Token()
     );
-    toast.success("Successfully created.");
-  } catch (err) {
-    errorHandler(err);
+    toast.success("SuccessFully Created");
+    return data;
+  } catch (ex) {
+    errorHandler(ex);
   }
 };
 
@@ -37,8 +39,9 @@ export const joinGroup = async (groupCode) => {
     );
 
     if (typeof data === "string") toast.info(data);
-  } catch (err) {
-    errorHandler(err);
+    else return data;
+  } catch (ex) {
+    errorHandler(ex);
   }
 };
 
@@ -49,8 +52,9 @@ export const getGroupStudents = async (groupId) => {
       { groupId },
       Token()
     );
+
     return data;
-  } catch (err) {
+  } catch (ex) {
     errorHandler();
   }
 };
@@ -62,9 +66,9 @@ export const getGroupTestPaper = async (groupId) => {
       { groupId },
       Token()
     );
-    data = [].concat(data).sort((a, b) => (a.createdAt ? 1 : -1));
+    data = [].concat(data).sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
     return data;
-  } catch (err) {
+  } catch (ex) {
     errorHandler();
   }
 };

@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Table, Modal, Form } from "react-bootstrap";
-import Loader from "../utils/Loader";
-import { getAllRegisteredStudent } from "../actions/studentRegistrationAction";
-import { getSinglePaper } from "../actions/testAction";
+import Loader from "../../utils/Loader";
+import { getAllRegisteredStudent } from "../../redux/actions/studentRegistrationAction";
+import { getSinglePaper } from "../../redux/actions/testAction";
 import download from "downloadjs";
-import { getResponsePdf } from "./../actions/responseSheetAction";
-import { editResultScore, getScore } from "./../actions/generateResultAction";
+import { getResponsePdf } from "../../redux/actions/responseSheetAction";
+import {
+  editResultScore,
+  getScore,
+} from "../../redux/actions/generateResultAction";
 import { toast } from "react-toastify";
 
 const Trainees = ({ id }) => {

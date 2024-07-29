@@ -1,22 +1,22 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate as useHistory } from "react-router-dom";
 import { Table, Button, Container, Modal, Tab, Tabs } from "react-bootstrap";
-import QuestionPaper from "../component/QuestionPaper";
-import QuestionDetails from "../component/QuestionDetails";
+import QuestionPaper from "../Question/QuestionPaper";
+import QuestionDetails from "../Question/QuestionDetails";
 import {
   testBegin,
   testEndByTeacher,
   testPaperDelete,
-} from "../actions/testAction";
-import { openRegistrationforTest } from "../actions/studentRegistrationAction";
-import { paginate } from "../utils/paginate";
-import { pageLength } from "../constants/pageConstant";
-import Paginations from "../utils/Pagination";
-import Statistics from "../component/Statistics";
-import Trainees from "../component/Trainees";
-import Timer from "../utils/Timer";
-import RankList from "./RankList";
+} from "../../redux/actions/testAction";
+import { openRegistrationforTest } from "../../redux/actions/studentRegistrationAction";
+import { paginate } from "../../utils/paginate";
+import { pageLength } from "../../redux/constants/pageConstant";
+import Paginations from "../../utils/Pagination";
+import Statistics from "../Layout/Statistics";
+import Trainees from "../Home/Trainees";
+import Timer from "../../utils/Timer";
+import RankList from "../RankList";
 
 const TestTable = ({
   testPapers,

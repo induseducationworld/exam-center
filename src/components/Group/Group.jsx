@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate as useHistory } from "react-router-dom";
 
 const Group = ({ group }) => {
   const history = useHistory();

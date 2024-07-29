@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Table, Button, Modal, ListGroup } from "react-bootstrap";
-import { deleteQuestion } from "../actions/questionAction";
-import { pageLength } from "../constants/pageConstant";
-import { paginate } from "../utils/paginate";
-import Paginations from "../utils/Pagination";
+import { deleteQuestion } from "../../redux/actions/questionAction";
+import { pageLength } from "../../redux/constants/pageConstant";
+import { paginate } from "../../utils/paginate";
+import Paginations from "../../utils/Pagination";
 
 const QuestionsTable = ({ questions }) => {
   const [show, setShow] = useState(false);

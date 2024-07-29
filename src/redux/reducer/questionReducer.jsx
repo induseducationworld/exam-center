@@ -10,5 +10,7 @@ export const questionListReducer = (state = {}, action) => {
       return { loading: false, error: action.payload };
     case question.QUESTION_LIST_RESET:
       return {};
+    default:
+      return state; // This line ensures that state is returned when no action matches
   }
 };

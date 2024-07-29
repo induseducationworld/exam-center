@@ -1,9 +1,10 @@
 import * as question from "../constants/questionConstant";
 import httpService from "../../utils/httpService";
 import { toast } from "react-toastify";
+import { getNotConductedTestPaper } from "./testAction";
 import Token from "../../utils/Token";
 import errorHandler from "../../errorHandler";
-import { getNotConductedTestPaper } from "./testAction";
+
 export const addQuestion = (questions, newQuestion) => async (dispatch) => {
   try {
     const { data } = await httpService.post(
@@ -11,11 +12,16 @@ export const addQuestion = (questions, newQuestion) => async (dispatch) => {
       newQuestion,
       Token()
     );
+
     const arr = [...questions];
     arr.push(data);
-    dispatch({ type: question.QUESTION_LIST_SUCCESS, payload: err });
-  } catch (err) {
-    errorHandler(err);
+    dispatch({
+      type: question.QUESTION_LIST_SUCCESS,
+      payload: arr,
+    });
+    //dispatch(getAllQuestions());
+  } catch (ex) {
+    errorHandler(ex);
   }
 };
 
@@ -32,8 +38,8 @@ export const getAllQuestions = () => async (dispatch, getState) => {
       type: question.QUESTION_LIST_SUCCESS,
       payload: data,
     });
-  } catch (err) {
-    errorHandler(err);
+  } catch (ex) {
+    errorHandler(ex);
   }
 };
 
@@ -47,8 +53,9 @@ export const deleteQuestion = (questions, id) => async (dispatch, getState) => {
 
     dispatch({ type: question.QUESTION_LIST_SUCCESS, payload: arr });
     dispatch(getNotConductedTestPaper());
+
     toast.success(data);
-  } catch (err) {
-    errorHandler(err);
+  } catch (ex) {
+    errorHandler(ex);
   }
 };

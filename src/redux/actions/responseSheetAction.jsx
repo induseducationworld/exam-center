@@ -1,11 +1,10 @@
-import http from "../utils/httpService";
-import errorHandler from "../errorHandler";
+import errorHandler from "../../errorHandler";
 import { toast } from "react-toastify";
-import Token from "../utils/Token";
-
+import Token from "../../utils/Token";
+import httpService from "../../utils/httpService";
 export const responseSheetOfStudent = async ({ studentId, testId }) => {
   try {
-    const { data } = await http.post(
+    const { data } = await httpService.post(
       "/api/student/responseSheet",
       {
         studentId,
@@ -23,7 +22,7 @@ export const responseSheetOfStudent = async ({ studentId, testId }) => {
 
 export const getResponsePdf = async (studentId, testId) => {
   try {
-    const { data } = await http.post(
+    const { data } = await httpService.post(
       "/api/student/responseSheet/pdf",
       {
         studentId,
@@ -40,7 +39,7 @@ export const getResponsePdf = async (studentId, testId) => {
 
 export const addAnswerForGivenQuestion = async (body) => {
   try {
-    const { data } = await http.post(
+    const { data } = await httpService.post(
       "/api/student/updateResponse",
       body,
       Token()
@@ -53,7 +52,7 @@ export const addAnswerForGivenQuestion = async (body) => {
 
 export const uploadPdf = async (testId, studentId, pdf) => {
   try {
-    const { data } = await http.post(
+    const { data } = await httpService.post(
       "/api/student/pdf/upload",
       {
         testId,
@@ -71,7 +70,7 @@ export const uploadPdf = async (testId, studentId, pdf) => {
 
 export const checkGivenTestForStudent = async (testId, studentId) => {
   try {
-    const { data } = await http.post(
+    const { data } = await httpService.post(
       "/api/student/test/complete",
       { testId, studentId },
       Token()

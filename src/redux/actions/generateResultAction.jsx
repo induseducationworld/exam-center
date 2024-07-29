@@ -11,15 +11,18 @@ export const resultGenerate =
       dispatch({ type: gen_result.GENERATE_RESULT_REQUEST });
 
       const { data } = await httpService.post(
-        "/api/result/generateResult",
-        { testId, studentId },
+        "/api/result/generateresult",
+        {
+          testId,
+          studentId,
+        },
         Token()
       );
 
       dispatch({ type: gen_result.GENERATE_RESULT_SUCCESS, payload: data });
-      toast.success("Result Generated.");
-    } catch (err) {
-      errorHandler(err);
+      toast.success("Result Generated");
+    } catch (ex) {
+      errorHandler(ex);
     }
   };
 
@@ -27,24 +30,30 @@ export const resultGeneratePdf = async (testId, studentId) => {
   try {
     const { data } = await httpService.post(
       "/api/result/generateresult/pdf",
-      { testId, studentId },
+      {
+        testId,
+        studentId,
+      },
       Token()
     );
-  } catch (err) {
-    errorHandler(err);
+    //console.log(data);
+  } catch (ex) {
+    errorHandler(ex);
   }
 };
 
 export const getScore = async (testId) => {
   try {
     const { data } = await httpService.post(
-      "/api/result/edit/score",
-      { testId },
+      "/api/result/all/score",
+      {
+        testId,
+      },
       Token()
     );
     return data;
-  } catch (err) {
-    errorHandler(err);
+  } catch (ex) {
+    errorHandler(ex);
   }
 };
 
@@ -52,19 +61,23 @@ export const editResultScore = async (testId, studentId, score) => {
   try {
     const { data } = await httpService.post(
       "/api/result/edit/score",
-      { testId, studentId, score },
+      {
+        testId,
+        studentId,
+        score,
+      },
       Token()
     );
     toast.success(data);
     getRanksOfStudent();
-  } catch (err) {
-    errorHandler(err);
+  } catch (ex) {
+    errorHandler(ex);
   }
 };
 
 export const getRanksOfStudent = async (testId) => {
   try {
-    const { data } = await http.post(
+    const { data } = await httpService.post(
       "/api/result/students/rank",
       { testId },
       Token()

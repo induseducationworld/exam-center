@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { checkTestStart, startTestTime } from "../actions/testAction";
+import { checkTestStart, startTestTime } from "../redux/actions/testAction";
 import Timer from "../utils/Timer";
 
 const Instruction = ({ history }) => {
